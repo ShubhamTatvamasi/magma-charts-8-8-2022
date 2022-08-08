@@ -8,8 +8,6 @@ MAGMA_ROOT=/tmp/magma
 mkdir -p charts
 CHARTS_REPO=${PWD}/charts
 
-MAGMA_CHARTS_REPO=https://shubhamtatvamasi.github.io/magma-charts-8-8-2022
-
 if [ "${1}" == "lib" ]; then
   cp -r ${MAGMA_ROOT}/orc8r/cloud/helm/orc8rlib ${CHARTS_REPO}
 else
@@ -37,7 +35,7 @@ fi
 
 # Replace orc8rlib repo link
 find ${CHARTS_REPO} -maxdepth 2 -type f -name 'Chart.yaml' -exec \
-  yq e '(.dependencies[] | select(.name == "orc8rlib") | .repository) = "${MAGMA_CHARTS_REPO}"' -i {} \;
+  yq e '(.dependencies[] | select(.name == "orc8rlib") | .repository) = "https://shubhamtatvamasi.github.io/magma-charts-8-8-2022"' -i {} \;
 
 
 # rm -rf cwf-orc8r feg-orc8r lte-orc8r orc8r secrets
